@@ -3,8 +3,8 @@ const mongoose = require("mongoose")
 const path = require("path")
 require("dotenv").config()
 const UserRoutes = require("./routes/UserRoutes")
-const {HandlingJsonSyntaxError} = require("./middlewares")
-
+const {HandlingJsonSyntaxError,AuthMiddleware} = require("./middlewares")
+const cookieparser = require("cookie-parser")
 
 const app = express()
 mongoose.connect(process.env.MONGO_URI,{
@@ -15,6 +15,7 @@ mongoose.connect(process.env.MONGO_URI,{
 
 //middlewares
 app.use(express.json())
+app.use(cookieparser())
 app.use(HandlingJsonSyntaxError)
 app.use(UserRoutes)
 app.use(express.static(path.join(__dirname,'public')))
@@ -29,6 +30,11 @@ app.get('/register',(req,res) => {
 app.get('/login',(req,res) => {
     return res.sendFile(path.join(__dirname,'public','login.html'))
 })
+
+app.get('/test',AuthMiddleware,(req,res) => {
+    return res.json(req.user)
+})
+
 //templates endpoints
 
 

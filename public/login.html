@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to the single CSS file -->
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
     <div class="container">
@@ -29,6 +29,12 @@
         const loginPassword = document.getElementById('loginPassword')
         const errormessage = document.getElementById('error-message')
         
+        const message = new URLSearchParams(window.location.search).get("message")
+        if(message){
+            errormessage.style.display = "block"
+            errormessage.innerHTML = message
+        }
+
         loginForm.addEventListener('submit',async (e) => {
             e.preventDefault()
             const body = {
