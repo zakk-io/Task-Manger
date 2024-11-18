@@ -23,6 +23,33 @@
             <p class="switch-form">Don't have an account? <a href="register.html">Register</a></p>
         </form>
     </div>
-    <script src="login.js"></script>
+    <script>
+        const loginForm = document.getElementById('loginForm')
+        const loginEmail = document.getElementById('loginEmail')
+        const loginPassword = document.getElementById('loginPassword')
+        const errormessage = document.getElementById('error-message')
+        
+        loginForm.addEventListener('submit',async (e) => {
+            e.preventDefault()
+            const body = {
+                email : loginEmail.value,
+                password : loginPassword.value
+            }
+        
+            const response = await fetch('/api/auth/login',{
+                method : 'POST',
+                headers : {"Content-Type": "application/json"},
+                body : JSON.stringify(body)
+            })
+        
+            const data = await response.json()
+        
+            if(data.status === 400 || data.status === 401){
+                errormessage.style.display = "block"
+                errormessage.innerHTML = data.message
+            }
+        
+        })        
+    </script>
 </body>
 </html>

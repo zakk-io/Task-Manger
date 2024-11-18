@@ -34,11 +34,6 @@ registerForm.addEventListener('submit',async (e) => {
 //register
 
 //login
-const loginForm = document.getElementById('loginForm')
-const loginEmail = document.getElementById('loginEmail')
-const loginPassword = document.getElementById('loginPassword')
-
-
 
 
 
