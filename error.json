@@ -1,21 +1,10 @@
 {
-  "errorResponse": {
-    "index": 0,
-    "code": 11000,
-    "errmsg": "E11000 duplicate key error collection: TaskManger.Users index: email_1 dup key: { email: \"[object Object]\" }",
-    "keyPattern": {
-      "email": 1
-    },
-    "keyValue": {
-      "email": "[object Object]"
-    }
-  },
-  "index": 0,
-  "code": 11000,
-  "keyPattern": {
-    "email": 1
-  },
-  "keyValue": {
-    "email": "[object Object]"
-  }
+  "stringValue": "\"{}\"",
+  "valueType": "Object",
+  "kind": "string",
+  "value": {},
+  "path": "email",
+  "reason": null,
+  "name": "CastError",
+  "message": "Cast to string failed for value \"{}\" (type Object) at path \"email\" for model \"Users\""
 }
