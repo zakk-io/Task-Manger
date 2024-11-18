@@ -16,7 +16,7 @@ const TasksSchema = mongoose.Schema(
         name : {
             type : String,
             required : true,
-            maxlength : 255,
+            maxlength : 50,
         },
 
         complate : {

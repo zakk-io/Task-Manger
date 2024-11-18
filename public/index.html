@@ -18,18 +18,20 @@
     <title>Task Manager || Final</title>
   </head>
   <body>
-    <form class="task-form">
+    <form class="task-form" id="task-form">
       <h4>task manager</h4>
       <div class="form-control">
         <input
           type="text"
           name="name"
           class="task-input"
+          id="task-input"
           placeholder="e.g. wash dishes"
+          maxlength="50"
         />
         <button type="submit" class="btn submit-btn">submit</button>
       </div>
-      <div class="form-alert"></div>
+      <div class="form-alert" id="form-alert"></div>
     </form>
     <section class="tasks-container">
       <p class="loading-text">Loading...</p>
