@@ -1,0 +1,9 @@
+
+POST http://127.0.0.1:2000/api/auth/register
+Content-Type: application/json
+
+{
+    "username" : "wfwefwf",
+    "email" : "test12gmail.com",
+    "password" : "1234$QwejiH5#$r"
+}

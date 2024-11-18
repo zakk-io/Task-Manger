@@ -1,6 +1,9 @@
 const express = require("express")
 const mongoose = require("mongoose")
 require("dotenv").config()
+const UserRoutes = require("./routes/UserRoutes")
+const {HandlingJsonSyntaxError} = require("./middlewares")
+
 
 const app = express()
 mongoose.connect(process.env.MONGO_URI,{
@@ -9,6 +12,9 @@ mongoose.connect(process.env.MONGO_URI,{
 }).then(() => console.log('Connected!'));
 
 
+app.use(express.json())
+app.use(HandlingJsonSyntaxError)
+app.use(UserRoutes)
 
 
 
