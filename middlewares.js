@@ -21,6 +21,7 @@ const HandlingJsonSyntaxError = (err,req,res,next) => {
 const AuthMiddleware = async (req,res,next) => {
     try {
         const token = req.cookies.JWT
+        
         if(!token){
             return res.redirect("/login?message=loggin first")   
         }

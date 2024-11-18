@@ -31,8 +31,9 @@ app.get('/login',(req,res) => {
     return res.sendFile(path.join(__dirname,'public','login.html'))
 })
 
-app.get('/test',AuthMiddleware,(req,res) => {
-    return res.json(req.user)
+
+app.get('/tasks',AuthMiddleware,(req,res) => {
+    return res.sendFile(path.join(__dirname,'public','index.html'))
 })
 
 //templates endpoints

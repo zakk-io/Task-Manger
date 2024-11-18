@@ -97,14 +97,8 @@ const Login = async (req,res) => {
             }
 
             const token = jwt.sign(paylod,process.env.ACCESS_TOKEN_SECERET,{expiresIn:"7d"})
-
             res.cookie("JWT",token,{httpOnly:true,secure:false,maxAge: 7 * 24 * 60 * 60 * 1000,})//secure:true in production
-            return res.status(200).json({
-                status : 200,
-                successful : true,
-                message : "login successfully",
-                access_token : token
-            }) 
+            return res.redirect("/tasks")
           }
         }
 
