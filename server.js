@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const path = require("path")
 require("dotenv").config()
 const UserRoutes = require("./routes/UserRoutes")
+const TaskRoutes = require("./routes/TaskRoutes")
 const {HandlingJsonSyntaxError,AuthMiddleware} = require("./middlewares")
 const cookieparser = require("cookie-parser")
 
@@ -31,6 +32,8 @@ app.get('/login',(req,res) => {
     return res.sendFile(path.join(__dirname,'public','login.html'))
 })
 
+
+app.use(TaskRoutes)
 
 app.get('/tasks',AuthMiddleware,(req,res) => {
     return res.sendFile(path.join(__dirname,'public','index.html'))

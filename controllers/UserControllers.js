@@ -95,7 +95,8 @@ const Login = async (req,res) => {
                 email : user.email,
                 create_at : new Date().getTime()
             }
-
+            console.log("user_id in Login" + user._id);
+            
             const token = jwt.sign(paylod,process.env.ACCESS_TOKEN_SECERET,{expiresIn:"7d"})
             res.cookie("JWT",token,{httpOnly:true,secure:false,maxAge: 7 * 24 * 60 * 60 * 1000,})//secure:true in production
             return res.redirect("/tasks")
@@ -128,7 +129,7 @@ const Login = async (req,res) => {
 //login
 
 const Logout = (req,res) => {
-    res.clearCookie("JWT") //set JWT cookie to empty in the response JWT=; clear cookie from the browser
+    res.clearCookie("JWT",{ httpOnly: true, secure: false }) //set JWT cookie to empty in the response JWT=; clear cookie from the browser
     return res.redirect("/login")
 }
 

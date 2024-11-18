@@ -28,6 +28,7 @@ const AuthMiddleware = async (req,res,next) => {
 
         const payload = jwt.verify(token,process.env.ACCESS_TOKEN_SECERET)
         req.user = payload
+        console.log("user_id in AuthMiddleware" +req.user.id);
         next()
 
     } catch (error) {
