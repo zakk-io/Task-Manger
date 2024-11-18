@@ -131,9 +131,17 @@ const Login = async (req,res) => {
 }
 //login
 
+//login
+
+const Logout = (req,res) => {
+    res.clearCookie("JWT") //set JWT cookie to empty in the response JWT=; clear cookie from the browser
+    return res.redirect("/login")
+}
+
 
 
 module.exports = {
     Register,
     Login,
+    Logout,
 }
