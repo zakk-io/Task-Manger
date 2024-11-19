@@ -49,6 +49,34 @@ const CreateTask = async (req,res) => {
 //Create Task
 
 
+//list task
+const ListTasks = async (req,res) => {
+    try {
+        const tasks = await Tasks.find({user_id:req.user.id})
+        
+        if(tasks.length === 0){
+            return res.status(404).json({
+                status: 404,
+                successful: false,
+                message: "No Tasks for Now",
+            })
+        }
+
+        return res.status(200).json({
+            status: 200,
+            successful: true,
+            tasks
+        })
+
+    } catch (error) {
+        console.log(error);
+        res.json(error)    
+    }
+}
+//list task
+
+
 module.exports = {
     CreateTask,
+    ListTasks
 }

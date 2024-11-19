@@ -8,6 +8,8 @@ router.use(AuthMiddleware)
 //Middleware
 
 router.post("/api/tasks",TasksControllers.CreateTask)
+router.get("/api/tasks",TasksControllers.ListTasks)
+
 
 
 module.exports = router

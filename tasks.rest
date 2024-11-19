@@ -1,8 +1,17 @@
 ### Create Task
 curl --location 'http://127.0.0.1:2000/api/tasks' \
 --header 'Content-Type: application/json' \
---header 'Cookie: JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2JiZDRhZTMxZTU3YjQwMjIxMzEzOCIsInVzZXJuYW1lIjoiemFrYXJpYSIsImVtYWlsIjoiemFra0BnbWFpbC5jb20iLCJjcmVhdGVfYXQiOjE3MzE5NjgzNDQ2NzAsImlhdCI6MTczMTk2ODM0NCwiZXhwIjoxNzMyNTczMTQ0fQ.EVaIvIHjCf2_8uaJSVx7VyLAxKGxR6FRcVwZfLzC8aU' \
+--header 'Cookie: JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2JiYzA2ZTMxZTU3YjQwMjIxMzEzMSIsInVzZXJuYW1lIjoiYWxpIiwiZW1haWwiOiJhbGlAZ21haWwuY29tIiwiY3JlYXRlX2F0IjoxNzMxOTY4MDExOTk0LCJpYXQiOjE3MzE5NjgwMTEsImV4cCI6MTczMjU3MjgxMX0.b7fvUL8neQQzteME7-5JBKfCbbvLbVlmLd8OkBzD3RU' \
 --data-raw '{
     "name": "new task",
     "complate": false
 }'
+
+
+
+### list Task
+curl --location 'http://127.0.0.1:2000/api/tasks' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2JiYzA2ZTMxZTU3YjQwMjIxMzEzMSIsInVzZXJuYW1lIjoiYWxpIiwiZW1haWwiOiJhbGlAZ21haWwuY29tIiwiY3JlYXRlX2F0IjoxNzMxOTY4MDExOTk0LCJpYXQiOjE3MzE5NjgwMTEsImV4cCI6MTczMjU3MjgxMX0.b7fvUL8neQQzteME7-5JBKfCbbvLbVlmLd8OkBzD3RU' \
+
+
