@@ -145,9 +145,46 @@ const DeleteTask = async (req,res) => {
 }
 //delet taskk
 
+
+//update task
+const UpdateTask = async (req,res) => {
+    try {
+        const task_id = req.params.id
+        console.log(req.body);
+        
+        const task = await Tasks.findOne({_id : task_id , user_id : req.user.id}) 
+        
+        if(!task){
+            return res.status(404).json({
+                status: 404,
+                successful: false,
+                message: "task not found",
+            })            
+        }
+
+        await Tasks.updateOne({_id : task_id},{$set:req.body})
+        return res.redirect("/tasks")
+
+    } catch (error) {
+        if(error.name === "CastError"){
+            return res.status(404).json({
+                status: 404,
+                successful: false,
+                message: "task not found",
+            })
+        }
+
+        console.log(error);
+        res.json(error)  
+    }
+
+}
+//update task
+
 module.exports = {
     CreateTask,
     ListTasks,
     DeleteTask,
-    GetTask
+    GetTask,
+    UpdateTask
 }

@@ -30,3 +30,13 @@ curl --location --request DELETE 'http://127.0.0.1:2000/api/tasks/673cbb01c160fe
 --header 'Cookie: JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2JiYzA2ZTMxZTU3YjQwMjIxMzEzMSIsInVzZXJuYW1lIjoiYWxpIiwiZW1haWwiOiJhbGlAZ21haWwuY29tIiwiY3JlYXRlX2F0IjoxNzMxOTY4MDExOTk0LCJpYXQiOjE3MzE5NjgwMTEsImV4cCI6MTczMjU3MjgxMX0.b7fvUL8neQQzteME7-5JBKfCbbvLbVlmLd8OkBzD3RU'
 
 
+
+
+### update Task
+curl --location --request PUT 'http://127.0.0.1:2000/api/tasks/673cbb3ac160fe123bad9f44' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2JiYzA2ZTMxZTU3YjQwMjIxMzEzMSIsInVzZXJuYW1lIjoiYWxpIiwiZW1haWwiOiJhbGlAZ21haWwuY29tIiwiY3JlYXRlX2F0IjoxNzMxOTY4MDExOTk0LCJpYXQiOjE3MzE5NjgwMTEsImV4cCI6MTczMjU3MjgxMX0.b7fvUL8neQQzteME7-5JBKfCbbvLbVlmLd8OkBzD3RU' \
+--data-raw '{
+    "name": "baka baka",
+    "complate": true
+}'
