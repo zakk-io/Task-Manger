@@ -82,12 +82,11 @@ const DeleteTask = async function (task_id) {
 
   const data = await response.json()
   if(response.ok){
-     document.getElementById(task_id).closest(".single-task").remove()
+     document.getElementById(task_id).closest(".single-task").remove() //remove father from the dom
   }
   formalert.innerHTML = data.message
 
 }
-
 //delete task
 
 

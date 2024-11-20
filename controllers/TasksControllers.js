@@ -76,8 +76,39 @@ const ListTasks = async (req,res) => {
 
 
 
-//list single task
-//list single task
+//get single task
+const GetTask = async (req,res) => {
+    try {
+        const task_id = req.params.id
+        const task = await Tasks.findOne({_id : task_id , user_id : req.user.id}) 
+
+        if(!task){
+            return res.status(404).json({
+                status: 404,
+                successful: false,
+                message: "task not found",
+            })            
+        }
+
+        return res.status(200).json({
+            status: 200,
+            successful: true,
+            task
+        })
+    } catch (error) {
+        if(error.name === "CastError"){
+            return res.status(404).json({
+                status: 404,
+                successful: false,
+                message: "task not found",
+            })
+        }
+
+        console.log(error);
+        res.json(error) 
+    }
+}
+//get single task
 
 
 //update task
@@ -89,7 +120,7 @@ const DeleteTask = async (req,res) => {
     try {
         const task_id = req.params.id
         
-        const task = await Tasks.findOne({_id : task_id}) 
+        const task = await Tasks.findOne({_id : task_id , user_id : req.user.id}) 
         
         if(!task){
             return res.status(404).json({
@@ -97,14 +128,6 @@ const DeleteTask = async (req,res) => {
                 successful: false,
                 message: "task not found",
             })            
-        }
-
-        if(task.user_id != req.user.id){
-            return res.status(403).json({
-                status: 403,
-                successful: false,
-                message: "unauthorized to do this action",
-            })
         }
 
         await Tasks.deleteOne({_id : task_id})
@@ -115,15 +138,12 @@ const DeleteTask = async (req,res) => {
         })
 
     } catch (error) {
-        const ErrorObject = {
-            status : 400,
-            successful : false,
-            error : error.name,
-            message : error.message,
-        }
-
         if(error.name === "CastError"){
-            return res.status(400).json(ErrorObject)
+            return res.status(404).json({
+                status: 404,
+                successful: false,
+                message: "task not found",
+            })
         }
 
         console.log(error);
@@ -136,5 +156,6 @@ const DeleteTask = async (req,res) => {
 module.exports = {
     CreateTask,
     ListTasks,
-    DeleteTask
+    DeleteTask,
+    GetTask
 }
