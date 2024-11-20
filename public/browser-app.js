@@ -1,3 +1,11 @@
+const formalert = document.getElementById("form-alert")
+const message = new URLSearchParams(window.location.search).get("message")
+
+
+if(message){
+  formalert.innerHTML = message
+}
+
 //list tasks
 const taskscontainer = document.getElementById("tasks-container")
 
@@ -20,7 +28,7 @@ const ListTasks = async function(){
                   <div class="task-links">
                   
                   <!-- edit link -->
-                  <a href="task.html?id="  class="edit-link">
+                  <a href="task?id=${task_id}"  class="edit-link">
                   <i class="fas fa-edit"></i>
                   </a>
                   <!-- delete btn -->
@@ -40,7 +48,7 @@ const ListTasks = async function(){
 //create task
 const taskform = document.getElementById("task-form")
 const taskinput = document.getElementById("task-input")
-const formalert = document.getElementById("form-alert")
+
 
 taskform.addEventListener('submit',async (e) => {
   e.preventDefault()

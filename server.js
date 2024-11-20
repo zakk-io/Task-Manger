@@ -39,6 +39,10 @@ app.get('/tasks',AuthMiddleware,(req,res) => {
     return res.sendFile(path.join(__dirname,'public','index.html'))
 })
 
+app.get('/task',AuthMiddleware,(req,res) => {
+    return res.sendFile(path.join(__dirname,'public','task.html'))
+})
+
 //templates endpoints
 
 

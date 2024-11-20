@@ -15,22 +15,22 @@
   </head>
   <body>
     <div class="container">
-      <form class="single-task-form">
+      <form class="single-task-form" id="single-task-form">
         <h4>Edit Task</h4>
         <div class="form-control">
           <label>Task ID</label>
-          <p class="task-edit-id"></p>
+          <p class="task-edit-id" id="task-edit-id"></p>
         </div>
         <div class="form-control">
           <label for="name">Name</label>
-          <input type="text" name="name" class="task-edit-name" />
+          <input type="text" name="name" class="task-edit-name" id="task-edit-name"/>
         </div>
         <div class="form-control">
           <label for="completed">completed</label>
-          <input type="checkbox" name="completed" class="task-edit-completed" />
+          <input type="checkbox" name="completed" class="task-edit-completed" id="task-edit-completed"/>
         </div>
         <button type="submit" class="block btn task-edit-btn">edit</button>
-        <div class="form-alert"></div>
+        <div class="form-alert" id="form-alert"></div>
       </form>
       <a href="index.html" class="btn back-link">back to tasks</a>
     </div>

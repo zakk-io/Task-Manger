@@ -83,11 +83,7 @@ const GetTask = async (req,res) => {
         const task = await Tasks.findOne({_id : task_id , user_id : req.user.id}) 
 
         if(!task){
-            return res.status(404).json({
-                status: 404,
-                successful: false,
-                message: "task not found",
-            })            
+            return res.redirect("/tasks?message=No Task Found With This id")
         }
 
         return res.status(200).json({
@@ -97,11 +93,7 @@ const GetTask = async (req,res) => {
         })
     } catch (error) {
         if(error.name === "CastError"){
-            return res.status(404).json({
-                status: 404,
-                successful: false,
-                message: "task not found",
-            })
+            return res.redirect("/tasks?message=No Task Found With This id")
         }
 
         console.log(error);
