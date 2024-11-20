@@ -11,8 +11,7 @@ require("dotenv").config()
 const CreateTask = async (req,res) => {
     try {
         const {name,complate} = req.body
-        
-        console.log("user_id in CreateTask" + req.user.id);        
+               
 
         const data = await new Tasks({
             user_id : req.user.id,
@@ -76,7 +75,66 @@ const ListTasks = async (req,res) => {
 //list task
 
 
+
+//list single task
+//list single task
+
+
+//update task
+//update task
+
+
+//delet taskk
+const DeleteTask = async (req,res) => {
+    try {
+        const task_id = req.params.id
+        
+        const task = await Tasks.findOne({_id : task_id}) 
+        
+        if(!task){
+            return res.status(404).json({
+                status: 404,
+                successful: false,
+                message: "task not found",
+            })            
+        }
+
+        if(task.user_id != req.user.id){
+            return res.status(403).json({
+                status: 403,
+                successful: false,
+                message: "unauthorized to do this action",
+            })
+        }
+
+        await Tasks.deleteOne({_id : task_id})
+        return res.status(200).json({
+            status: 200,
+            successful: true,
+            message : "task deleted successfully"
+        })
+
+    } catch (error) {
+        const ErrorObject = {
+            status : 400,
+            successful : false,
+            error : error.name,
+            message : error.message,
+        }
+
+        if(error.name === "CastError"){
+            return res.status(400).json(ErrorObject)
+        }
+
+        console.log(error);
+        res.json(error)  
+    }
+
+}
+//delet taskk
+
 module.exports = {
     CreateTask,
-    ListTasks
+    ListTasks,
+    DeleteTask
 }

@@ -9,6 +9,7 @@ router.use(AuthMiddleware)
 
 router.post("/api/tasks",TasksControllers.CreateTask)
 router.get("/api/tasks",TasksControllers.ListTasks)
+router.delete("/api/tasks/:id",TasksControllers.DeleteTask)
 
 
 

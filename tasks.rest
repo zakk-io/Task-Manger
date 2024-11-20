@@ -15,3 +15,12 @@ curl --location 'http://127.0.0.1:2000/api/tasks' \
 --header 'Cookie: JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2JiYzA2ZTMxZTU3YjQwMjIxMzEzMSIsInVzZXJuYW1lIjoiYWxpIiwiZW1haWwiOiJhbGlAZ21haWwuY29tIiwiY3JlYXRlX2F0IjoxNzMxOTY4MDExOTk0LCJpYXQiOjE3MzE5NjgwMTEsImV4cCI6MTczMjU3MjgxMX0.b7fvUL8neQQzteME7-5JBKfCbbvLbVlmLd8OkBzD3RU' \
 
 
+
+
+
+### delete Task
+curl --location --request DELETE 'http://127.0.0.1:2000/api/tasks/673d52299a8d20527257733b' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: JWT=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2JiYzA2ZTMxZTU3YjQwMjIxMzEzMSIsInVzZXJuYW1lIjoiYWxpIiwiZW1haWwiOiJhbGlAZ21haWwuY29tIiwiY3JlYXRlX2F0IjoxNzMxOTY4MDExOTk0LCJpYXQiOjE3MzE5NjgwMTEsImV4cCI6MTczMjU3MjgxMX0.b7fvUL8neQQzteME7-5JBKfCbbvLbVlmLd8OkBzD3RU'
+
+
