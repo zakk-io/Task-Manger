@@ -12,6 +12,8 @@ const ListTasks = async function(){
     for (let task = data.tasks.length - 1; task >= 0; task--) {
         const name = data.tasks[task].name
         const completed = data.tasks[task].complete
+        const task_id = data.tasks[task]._id
+
 
         Tasks += `<div class="single-task ${completed}">
                   <h5><span><i class="far fa-check-circle"></i></span>${name}</h5>
@@ -22,7 +24,7 @@ const ListTasks = async function(){
                   <i class="fas fa-edit"></i>
                   </a>
                   <!-- delete btn -->
-                  <button type="button" class="delete-btn" data-id="">
+                  <button type="button" class="delete-btn" id="${task_id}" onclick="DeleteTask('${task_id}')">
                   <i class="fas fa-trash"></i>
                   </button>
                   </div>
@@ -67,6 +69,26 @@ taskform.addEventListener('submit',async (e) => {
 })
 //create task
 
+
+
+
+//delete task
+const DeleteTask = async function (task_id) {
+  
+  const response = await fetch(`/api/tasks/${task_id}`,{
+    method : "DELETE",
+  })
+
+
+  const data = await response.json()
+  if(response.ok){
+     document.getElementById(task_id).closest(".single-task").remove()
+  }
+  formalert.innerHTML = data.message
+
+}
+
+//delete task
 
 
 ListTasks()
