@@ -26,6 +26,33 @@ const GetTask = async function(task_id){
 //get task
 
 
+//update task
+
+singletaskform.addEventListener('submit',async (e) => {
+  e.preventDefault()
+
+  const body = {
+    name:taskeditname.value,
+    complate : taskeditcompleted.checked
+  }
+  const response = await fetch(`/api/tasks/${task_id}`,{
+    method : 'PUT',
+    headers : {'Content-Type': 'application/json'},
+    body : JSON.stringify(body)
+  })
+
+  if(response.redirected){
+    window.location.href = response.url
+    console.log(response.url);
+    
+    return;
+  }
+
+})
+
+//update task
+
+
 
 
 GetTask(task_id)
