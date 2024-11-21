@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 const { json } = require("express")
 require("dotenv").config()
+const expressratelimit = require("express-rate-limit")
 
 const HandlingJsonSyntaxError = (err,req,res,next) => {
     if(err instanceof SyntaxError && err.status === 400 && 'body' in err){
@@ -52,7 +53,51 @@ const AuthMiddleware = async (req,res,next) => {
 }
 
 
+
+
+const rateLimitHandler = (req,res) => {
+    return res.status(429).json({
+        status: 429,
+        successful: false,
+        message: "Rate limit exceeded. try again later",
+    })
+}
+
+//login rate limit 
+const LoginRateLimit = expressratelimit({
+	windowMs: 1 * 60 * 1000, 
+	limit: 10,
+    standardHeaders: true,     
+    legacyHeaders: false,
+    handler : rateLimitHandler //call the function rateLimitHandler if Rate limit exceeded
+})
+
+
+
+//create task rate limit 
+const TaskRateLimit = expressratelimit({
+	windowMs: 1 * 60 * 1000, 
+	limit: 30,
+    standardHeaders: true,     
+    legacyHeaders: false,
+    keyGenerator: (req) => req.user.id, //rate limit by user id
+    handler : rateLimitHandler //call the function rateLimitHandler if Rate limit exceeded
+})
+
+//create task rate limit 
+const RegisterLimit = expressratelimit({
+	windowMs: 5 * 60 * 60 * 1000, 
+	limit: 5,
+    standardHeaders: true,     
+    legacyHeaders: false,
+    handler : rateLimitHandler //call the function rateLimitHandler if Rate limit exceeded
+})
+
+
 module.exports = {
     HandlingJsonSyntaxError,
-    AuthMiddleware
+    AuthMiddleware,
+    LoginRateLimit,
+    TaskRateLimit,
+    RegisterLimit
 }

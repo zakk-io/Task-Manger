@@ -69,7 +69,7 @@ taskform.addEventListener('submit',async (e) => {
     formalert.innerHTML = data.body
   }
 
-  else if(data.status === 201){
+  else if(data.status === 201 || data.status === 429){
     taskinput.value = ""
     formalert.innerHTML = data.message
     ListTasks()
