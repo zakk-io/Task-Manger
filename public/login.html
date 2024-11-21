@@ -23,13 +23,15 @@
             <p class="switch-form">Don't have an account? <a href="register.html">Register</a></p>
         </form>
     </div>
+
+    <script src="./purify.min.js"></script>
     <script>
         const loginForm = document.getElementById('loginForm')
         const loginEmail = document.getElementById('loginEmail')
         const loginPassword = document.getElementById('loginPassword')
         const errormessage = document.getElementById('error-message')
         
-        const message = new URLSearchParams(window.location.search).get("message")
+        const message = DOMPurify.sanitize(new URLSearchParams(window.location.search).get("message"),{ ALLOWED_TAGS: [] })
         if(message){
             errormessage.style.display = "block"
             errormessage.innerHTML = message
