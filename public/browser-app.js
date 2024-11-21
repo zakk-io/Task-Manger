@@ -1,9 +1,9 @@
 const formalert = document.getElementById("form-alert")
-const message = new URLSearchParams(window.location.search).get("message")
+const message = DOMPurify.sanitize(new URLSearchParams(window.location.search).get("message"),{ ALLOWED_TAGS: [] })
 
 
-if(message){
-  formalert.innerHTML = message
+if(message){ 
+  formalert.innerHTML =  message 
 }
 
 //list tasks

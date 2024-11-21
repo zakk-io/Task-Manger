@@ -81,7 +81,7 @@ const GetTask = async (req,res) => {
     try {
         const task_id = req.params.id
         const task = await Tasks.findOne({_id : task_id , user_id : req.user.id}) 
-
+        
         if(!task){
             return res.redirect("/tasks?message=No Task Found With This id")
         }
@@ -150,7 +150,6 @@ const DeleteTask = async (req,res) => {
 const UpdateTask = async (req,res) => {
     try {
         const task_id = req.params.id
-        console.log(req.body);
         
         const task = await Tasks.findOne({_id : task_id , user_id : req.user.id}) 
         
@@ -162,7 +161,12 @@ const UpdateTask = async (req,res) => {
             })            
         }
 
-        await Tasks.updateOne({_id : task_id},{$set:req.body})
+        const clean_data = {
+            name : xss(req.body.name),
+            complate : req.body.complate
+        }
+
+        await Tasks.updateOne({_id : task_id},{$set:clean_data})
         return res.redirect("/tasks")
 
     } catch (error) {
